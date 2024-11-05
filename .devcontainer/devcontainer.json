@@ -1,0 +1,36 @@
+{
+  "name": "Ruby on Rails Development",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/rails_docker",
+  "features": {
+    "ghcr.io/rails/devcontainer/features/activestorage": {}
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "editor.formatOnSave": true,
+    "ruby.useBundler": true,
+    "ruby.format": "rubocop",
+    "ruby.lint": {
+      "rubocop": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "mbessey.vscode-rufo",
+        "rebornix.Ruby",
+        "castwide.solargraph",
+        "kaiwood.endwise",
+        "misogi.ruby-rubocop",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 5432],
+  "postCreateCommand": "bundle install",
+  "remoteEnv": {
+    "RAILS_ENV": "development"
+  }
+}
