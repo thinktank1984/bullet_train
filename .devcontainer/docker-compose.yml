@@ -1,11 +1,11 @@
-version: '3.8'
 services:
   app:
     build: 
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/workspaces/rails_docker:cached
+      - ..:/workspaces/rails_docker:cached
+      - ~/.ssh:/home/vscode/.ssh:cached
     ports:
       - "3000:3000"
     environment:
@@ -15,6 +15,10 @@ services:
       RAILS_ENV: development
     depends_on:
       - db
+    command: sleep infinity
+    user: vscode
+    tty: true
+    stdin_open: true
 
   db:
     image: postgres:16
@@ -25,6 +29,11 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
