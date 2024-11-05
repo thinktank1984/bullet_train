@@ -34,6 +34,10 @@ COPY . .
 COPY package.json yarn.lock ./
 RUN yarn install
 
-# Initialize PostgreSQL and create user
-RUN service postgresql start && \
-    su - postgres -c "createuser -s root" && \
+# Add a script to be executed every time the container starts
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+# Start the main process
+CMD ["rails", "server", "-b", "0.0.0.0"]

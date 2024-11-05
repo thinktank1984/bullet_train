@@ -3,7 +3,7 @@ services:
   app:
     build: 
       context: .
-      dockerfile: .devcontainer/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - .:/workspaces/rails_docker:cached
     ports:

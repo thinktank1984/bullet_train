@@ -1,11 +1,9 @@
 {
   "name": "Ruby on Rails Development",
-  "dockerComposeFile": "./docker-compose.yml",
+  "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/rails_docker",
-  "features": {
-    "ghcr.io/rails/devcontainer/features/activestorage": {}
-  },
+  
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash",
     "editor.formatOnSave": true,
